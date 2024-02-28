@@ -2,13 +2,15 @@
 
 import { useEffect, useState, useRef } from "react";
 
-export default function Time() {
+export default function Time({isStarted}) {
     const [elapsedTime, setElapsedTime]  = useState(0);
     const [startTime, setStartTime] = useState(Date.now())
     let currentTime;
+    
     useEffect(() => {
         timeInc();
         return () => clearInterval(timeHandler.current)
+        
     })
     
     let timeHandler = useRef()
