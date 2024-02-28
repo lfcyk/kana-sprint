@@ -188,8 +188,8 @@ export default function Home() {
 					})
 				}
 			</div>
-			<div className="kana-sprint max-w-fit m-auto mt-7 text-3xl font-bold select-none">KANA SPRINT</div>
-			<div className=" max-w-fit m-auto mb-7 text-3xl select-none">～<span className="text-red-500">かな</span>スプリント～</div>
+			<div className="kana-sprint max-w-fit m-auto mt-7 text-3xl font-bold select-none">Kana Sprint</div>
+			<div className=" max-w-fit m-auto mb-7 text-3xl select-none font-bold">～<span className="text-red-500">かな</span>スプリント～</div>
 
 			<div  className="grid grid-rows-5 grid-cols-10 gap-2  m-auto w-fit max-h-fit grid-auto-flow">
 				{
@@ -204,17 +204,14 @@ export default function Home() {
 			</div>
 			
 			<Time isFinished={isFinished}/>
-			<footer>
-				<div className="flex flex-row justify-center items-center gap-2 mt-7">
-					<div>
-						Copyright ©	{new Date().getFullYear()} lfcyk
-					</div>
-					<a href="https://github.com/lfcyk" target="_blank">
-						<FaGithub />
-					</a>
+			<div className="absolute bottom-0 left-0 flex flex-row justify-center items-center gap-2 mx-auto w-full select-none mb-2">
+				<div>
+					Copyright ©	{new Date().getFullYear()} lfcyk
 				</div>
-
-			</footer>
+				<a href="https://github.com/lfcyk" target="_blank">
+					<FaGithub />
+				</a>
+			</div>
 		</div>
 	);
 }
