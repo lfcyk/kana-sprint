@@ -18,7 +18,9 @@ export default function Home() {
 					<Link href={'/hiragana'}>
 						<MainButton text={"Hiragana"} bgColor={'bg-orange-500'}/>
 					</Link>
-					<MainButton text={"Katakana"} bgColor={'bg-green-400'}/>
+					<Link href={'/katakana'}>
+						<MainButton text={"Katakana"} bgColor={'bg-green-400'}/>
+					</Link>
 					<MainButton text={"Leaderboard"} bgColor={'bg-cyan-400'}/>
 					<MainButton text={"About"} bgColor={'bg-yellow-400'}/>
 				</div>
