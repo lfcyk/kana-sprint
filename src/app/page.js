@@ -18,6 +18,13 @@ import { Draggable } from "gsap/Draggable";
 import { FaGithub } from "react-icons/fa";
 
 export default function Home() {
+	let enteredAnswer = {};
+
+	letConRomaji.forEach((romaji) => {
+		enteredAnswer[romaji] = "";
+	})
+
+	// console.log(enteredAnswer);
 	const shuffledHiragana = hiraganaArray.sort((a, b) => 0.5 - Math.random());
 
 	let hiraganaArray1 = shuffledHiragana.slice(0, 23);
@@ -31,10 +38,15 @@ export default function Home() {
 		Draggable.create(".kana-card", {
 			type: "x,y",
 			bounds: document.getElementById("canvas"),	
-			
-						  
+			onDragStart: function(e) {
+				for (const [key, value] of Object.entries(enteredAnswer)) {
+					if(value == this.target.textContent) {
+						enteredAnswer[key] = "";
+					}
+				}				
+			},	  
 			onDrag:	function(e) {
-				console.log(e);
+				// console.log(e);
 				let hittedBox = 0
 				for(var i = 0; i < letCon.length; i++) {
 					if(this.hitTest(letCon[i]) && (letCon[i].textContent != "")) {
@@ -72,7 +84,7 @@ export default function Home() {
 				for(var i = 0; i < letCon.length; i++) {
 					if(this.hitTest(letCon[i]) && (letCon[i].textContent != "")) {
 						hittedBox+=1;
-						console.log(letCon[i].textContent);
+						// console.log(letCon[i].textContent);
 					} 					
 				}
 
@@ -92,7 +104,7 @@ export default function Home() {
 								var x = "+=" + (rect2.left - rect1.left);
 								var y = "+=" + (rect2.top - rect1.top);
 								
-								console.log(x,y);
+								// console.log(x,y);
 
 								gsap.to(this.target, {
 									duration: 0.3,
@@ -103,6 +115,9 @@ export default function Home() {
 								letCon[i].children[0].classList.remove('bg-red-200');
 								letCon[i].children[0].classList.remove('bg-white');
 								letCon[i].children[0].classList.add('bg-green-200');
+
+								enteredAnswer[letCon[i].textContent] = this.target.textContent;
+								// console.log(enteredAnswer);
 							}
 						}
 					} else {
