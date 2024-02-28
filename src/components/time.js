@@ -2,27 +2,36 @@
 
 import { useEffect, useState, useRef } from "react";
 
-export default function Time({isStarted}) {
+export default function Time({isFinished}) {
     const [elapsedTime, setElapsedTime]  = useState(0);
-    const [startTime, setStartTime] = useState(Date.now())
+    const [startTime, setStartTime] = useState(Date.now());
+    let timeHandler = useRef()
+
     let currentTime;
+
+    if(isFinished) {
+        stop();
+    }
     
     useEffect(() => {
         timeInc();
         return () => clearInterval(timeHandler.current)
-        
     })
     
-    let timeHandler = useRef()
+    
     function timeInc() {
         timeHandler.current = setInterval(() => {
-            currentTime = new Date().getTime();
-            setElapsedTime(currentTime - startTime);
+            if(!isFinished) {
+                currentTime = new Date().getTime();
+                setElapsedTime(currentTime - startTime);
+            }
         }, 10)
     }
 
     function stop() {
         clearInterval(timeHandler.current);
+        const timer = document.querySelector('.timer');
+        timer.classList.add('text-green-500');
     }
         
     let hours = Math.floor(elapsedTime / (1000 * 60 * 60));
@@ -34,9 +43,10 @@ export default function Time({isStarted}) {
     minutes = String(minutes).padStart(2, '0');
     seconds = String(seconds).padStart(2, '0');
     milliseconds = String(milliseconds).padStart(3, '0');
+
     
     return (
-        <div className="mx-auto mt-14 text-8xl w-7/12 select-none">
+        <div className={`timer mx-auto mt-14 text-8xl w-7/12 select-none`}>
             <div className=" mx-auto text-8xl flex flex-row gap-2 justify-evenly">
                 <div className="w-32">{hours}</div>
                 <div>:</div>
@@ -48,4 +58,4 @@ export default function Time({isStarted}) {
             </div>
         </div>
     )
-    }
+}

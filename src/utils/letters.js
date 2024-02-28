@@ -3,4 +3,55 @@ const katakanaArray = ['ア', 'イ', 'ウ', 'エ', 'オ', 'カ', 'キ', 'ク', '
 const romajiArray = ['A', 'I', 'U', 'E', 'O', 'KA', 'KI', 'KU', 'KE', 'KO', 'SA', 'SHI', 'SU', 'SE', 'SO', 'TA', 'CHI', 'TSU', 'TE', 'TO', 'NA', 'NI', 'NU', 'NE', 'NO', 'HA', 'HI', 'FU', 'HE', 'HO', 'MA', 'MI', 'MU', 'ME', 'MO', 'YA', 'YU', 'YO', 'RA', 'RI', 'RU', 'RE', 'RO', 'WA', 'O', 'N'];
 const letConRomaji = ["WA", "RA", "YA", "MA", "HA", "NA", "TA", "SA", "KA", "A", "", "RI", "", "MI", "HI", "NI", "CHI", "SHI", "KI", "I", "WO", "RU", "YU", "MU", "FU", "NU", "TSU", "SU", "KU", "U", "", "RE", "", "ME", "HE", "NE", "TE", "SE", "KE", "E", "N", "RO", "YO", "MO", "HO", "NO", "TO", "SO", "KO", "O"]
 
-export { hiraganaArray, katakanaArray, letConRomaji};
+const kunjawHiragana = {
+    "WA": "わ",
+    "RA": "ら",
+    "YA": "や",
+    "MA": "ま",
+    "HA": "は",
+    "NA": "な",
+    "TA": "た",
+    "SA": "さ",
+    "KA": "か",
+    "A": "あ",
+    "": "",
+    "RI": "り",
+    "MI": "み",
+    "HI": "ひ",
+    "NI": "に",
+    "CHI": "ち",
+    "SHI": "し",
+    "KI": "き",
+    "I": "い",
+    "WO": "を",
+    "RU": "る",
+    "YU": "ゆ",
+    "MU": "む",
+    "FU": "ふ",
+    "NU": "ぬ",
+    "TSU": "つ",
+    "SU": "す",
+    "KU": "く",
+    "U": "う",
+    "RE": "れ",
+    "ME": "め",
+    "HE": "へ",
+    "NE": "ね",
+    "TE": "て",
+    "SE": "せ",
+    "KE": "け",
+    "E": "え",
+    "N": "ん",
+    "RO": "ろ",
+    "YO": "よ",
+    "MO": "も",
+    "HO": "ほ",
+    "NO": "の",
+    "TO": "と",
+    "SO": "そ",
+    "KO": "こ",
+    "O": "お"
+};
+const kunjawKatakana = ["ワ", "ラ", "ヤ", "マ", "ハ", "ナ", "タ", "サ", "カ", "ア", "", "リ", "", "ミ", "ヒ", "ニ", "チ", "シ", "キ", "イ", "ヲ", "ル", "ユ", "ム", "フ", "ヌ", "ツ", "ス", "ク", "ウ", "", "レ", "", "メ", "ヘ", "ネ", "テ", "セ", "ケ", "エ", "ン", "ロ", "ヨ", "モ", "ホ", "ノ", "ト", "ソ", "コ", "オ"];
+
+export { hiraganaArray, katakanaArray, letConRomaji, kunjawHiragana, kunjawKatakana};

@@ -3,7 +3,7 @@
 
 import LetterContainer from "@/components/letter_container";
 import Time from "@/components/time";
-import { hiraganaArray, katakanaArray, romajiArray, letConRomaji } from "@/utils/letters.js"
+import { hiraganaArray, katakanaArray, romajiArray, letConRomaji, kunjawHiragana } from "@/utils/letters.js"
 
 import dynamic from 'next/dynamic'
 import { useState } from "react";
@@ -17,15 +17,51 @@ import { Draggable } from "gsap/Draggable";
 
 import { FaGithub } from "react-icons/fa";
 
-export default function Home() {
-	let enteredAnswer = {};
+const shuffledHiragana = hiraganaArray.sort((a, b) => 0.5 - Math.random());
 
+export default function Home() {
+	const [isFinished, setIsFinished] = useState(false);
+	let enteredAnswer = {};
 	letConRomaji.forEach((romaji) => {
 		enteredAnswer[romaji] = "";
 	})
 
+	let countCorrect = 0;
+
+	function letConColorTo(color, letterCon) {
+		// console.log(letterCon);
+		if(color == 'red') {
+			letterCon.children[0].classList.remove('bg-white');
+			letterCon.children[0].classList.remove('bg-green-200');
+			letterCon.children[0].classList.add('bg-red-200');
+		} else if(color == 'green') {
+			letterCon.children[0].classList.remove('bg-red-200');
+			letterCon.children[0].classList.remove('bg-white');
+			letterCon.children[0].classList.add('bg-green-200');
+
+		} else if(color == 'white'){
+			letterCon.children[0].classList.remove('bg-red-200');
+			letterCon.children[0].classList.remove('bg-green-200');
+			letterCon.children[0].classList.add('bg-white');
+		}
+	}
+	
+	function calculateScore() {
+		countCorrect = 0;
+		letConRomaji.forEach((romajiKey) => {
+			if((enteredAnswer[romajiKey] == kunjawHiragana[romajiKey]) && (romajiKey != "")) {
+				countCorrect+=1;
+			}
+		})
+		if(countCorrect == 46) {
+			setIsFinished(true);
+		}
+		// console.log({countCorrect, enteredAnswer});
+	}
+
+	
+
 	// console.log(enteredAnswer);
-	const shuffledHiragana = hiraganaArray.sort((a, b) => 0.5 - Math.random());
 
 	let hiraganaArray1 = shuffledHiragana.slice(0, 23);
 	let hiraganaArray2 = shuffledHiragana.slice(23, 46);
@@ -49,31 +85,24 @@ export default function Home() {
 				// console.log(e);
 				let hittedBox = 0
 				for(var i = 0; i < letCon.length; i++) {
-					if(this.hitTest(letCon[i]) && (letCon[i].textContent != "")) {
+					if(this.hitTest(letCon[i]) && (letCon[i].textContent != "") && (enteredAnswer[letCon[i].textContent] == "")) {
 						hittedBox+=1;
 					} 					
 				}
 
 				for(var i = 0; i < letCon.length; i++) {
-					if(this.hitTest(letCon[i]) && (letCon[i].textContent != "")) {
+					if(this.hitTest(letCon[i]) && (letCon[i].textContent != "") && (enteredAnswer[letCon[i].textContent] == "")) {
 						if(hittedBox > 1) {
 							if(letCon[i].textContent != '') {
-								letCon[i].children[0].classList.remove('bg-green-200');
-								letCon[i].children[0].classList.remove('bg-white');
-								letCon[i].children[0].classList.add('bg-red-200');
+								letConColorTo('red', letCon[i]);
 							}	
 						} else if(hittedBox == 1) {
 							if(letCon[i].textContent != '') {
-								letCon[i].children[0].classList.remove('bg-red-200');
-								letCon[i].children[0].classList.remove('bg-white');
-								letCon[i].children[0].classList.add('bg-green-200');
+								letConColorTo('green', letCon[i]);
 							}
 						}
 					} else {
-						letCon[i].children[0].classList.remove('bg-red-200');
-						letCon[i].children[0].classList.remove('bg-green-200');
-						letCon[i].children[0].classList.add('bg-white');
-
+						letConColorTo('white', letCon[i]);
 					}
 				}
 				
@@ -82,19 +111,17 @@ export default function Home() {
 			onDragEnd: function (e) {
 				let hittedBox = 0
 				for(var i = 0; i < letCon.length; i++) {
-					if(this.hitTest(letCon[i]) && (letCon[i].textContent != "")) {
+					if(this.hitTest(letCon[i]) && (letCon[i].textContent != "") && (enteredAnswer[letCon[i].textContent] == "")) {
 						hittedBox+=1;
 						// console.log(letCon[i].textContent);
 					} 					
 				}
 
 				for(var i = 0; i < letCon.length; i++) {
-					if(this.hitTest(letCon[i]) && (letCon[i].textContent != "")) {
+					if(this.hitTest(letCon[i]) && (letCon[i].textContent != "") && (enteredAnswer[letCon[i].textContent] == "")) {
 						if(hittedBox > 1) {
 							if(letCon[i].textContent != '') {
-								letCon[i].children[0].classList.remove('bg-green-200');
-								letCon[i].children[0].classList.remove('bg-white');
-								letCon[i].children[0].classList.add('bg-red-200');
+								letConColorTo('red', letCon[i]);
 							}	
 						} else if(hittedBox == 1) {
 							if(letCon[i].textContent != '') {
@@ -112,22 +139,17 @@ export default function Home() {
 									y: y,
 								})
 
-								letCon[i].children[0].classList.remove('bg-red-200');
-								letCon[i].children[0].classList.remove('bg-white');
-								letCon[i].children[0].classList.add('bg-green-200');
+								letConColorTo('green', letCon[i]);
 
 								enteredAnswer[letCon[i].textContent] = this.target.textContent;
 								// console.log(enteredAnswer);
 							}
 						}
 					} else {
-						letCon[i].children[0].classList.remove('bg-red-200');
-						letCon[i].children[0].classList.remove('bg-green-200');
-						letCon[i].children[0].classList.add('bg-white');
-
+						letConColorTo('white', letCon[i]);
 					}
 				}
-				
+				calculateScore();
 			},
 			
 			
@@ -181,7 +203,7 @@ export default function Home() {
 				}
 			</div>
 			
-			<Time/>
+			<Time isFinished={isFinished}/>
 			<footer>
 				<div className="flex flex-row justify-center items-center gap-2 mt-7">
 					<div>
