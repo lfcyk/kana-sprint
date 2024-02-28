@@ -15,6 +15,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
 
+import { FaGithub } from "react-icons/fa";
+
 export default function Home() {
 	const shuffledHiragana = hiraganaArray.sort((a, b) => 0.5 - Math.random());
 
@@ -84,7 +86,6 @@ export default function Home() {
 							}	
 						} else if(hittedBox == 1) {
 							if(letCon[i].textContent != '') {
-								//TODO: snap to container
 								var rect1 = this.target.getBoundingClientRect();
       							var rect2 = letCon[i].getBoundingClientRect();
 
@@ -166,6 +167,17 @@ export default function Home() {
 			</div>
 			
 			<Time/>
+			<footer>
+				<div className="flex flex-row justify-center items-center gap-2 mt-7">
+					<div>
+						Copyright ©	{new Date().getFullYear()} lfcyk
+					</div>
+					<a href="https://github.com/lfcyk" target="_blank">
+						<FaGithub />
+					</a>
+				</div>
+
+			</footer>
 		</div>
 	);
 }

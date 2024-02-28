@@ -36,7 +36,7 @@ export default function Time({isStarted}) {
     milliseconds = String(milliseconds).padStart(3, '0');
     
     return (
-        <div className="mx-auto mt-20 text-8xl w-7/12 select-none">
+        <div className="mx-auto mt-14 text-8xl w-7/12 select-none">
             <div className=" mx-auto text-8xl flex flex-row gap-2 justify-evenly">
                 <div className="w-32">{hours}</div>
                 <div>:</div>
