@@ -16,11 +16,11 @@ export default function Home() {
 			<div className="flex flex-col">
 				<div className="flex flex-col gap-6">
 					<Link href={'/hiragana'}>
-						<MainButton text={"Hiragana"}/>
+						<MainButton text={"Hiragana"} bgColor={'bg-orange-500'}/>
 					</Link>
-					<MainButton text={"Katakana"}/>
-					<MainButton text={"Leaderboard"}/>
-					<MainButton text={"About"}/>
+					<MainButton text={"Katakana"} bgColor={'bg-green-400'}/>
+					<MainButton text={"Leaderboard"} bgColor={'bg-cyan-400'}/>
+					<MainButton text={"About"} bgColor={'bg-yellow-400'}/>
 				</div>
 			</div>
 			<Footer/>

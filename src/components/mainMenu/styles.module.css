@@ -7,7 +7,7 @@
     width: 20rem; 
     line-height: 2.25rem; 
     color: #ffffff; 
-    background-color: rgb(12, 202, 235);
+    /* background-color: rgb(12, 202, 235); */
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
