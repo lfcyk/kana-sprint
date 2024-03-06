@@ -4,10 +4,15 @@ clientPromise
 export const dynamic = "force-dynamic";
 
 export async function GET(req, { params }) {
+    let hiraganaLeaderboard, katakanaLeaderboard;
     const client = await clientPromise;
     const db = client.db("kanaScriptDB");
-    const hiraganaLeaderboard = await db.collection("hiragana").find({}).toArray();
-    const katakanaLeaderboard = await db.collection("katakana").find({}).toArray();
+    try {
+        hiraganaLeaderboard = await db.collection("hiragana").find({}).toArray();
+        katakanaLeaderboard = await db.collection("katakana").find({}).toArray();
+    } catch (error) {
+        return new Response(error);
+    }
 
     return new Response(JSON.stringify({hiraganaLeaderboard, katakanaLeaderboard}, null, 2), {status: 200})
 }
