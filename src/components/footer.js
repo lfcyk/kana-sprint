@@ -2,7 +2,7 @@ import { FaGithub } from "react-icons/fa";
 
 function Footer() {
   return (
-    <div className="absolute bottom-0 left-0 flex flex-row justify-center items-center gap-2 mx-auto w-full select-none mb-2">
+    <div className="absolute bottom-0 left-0 flex flex-row justify-center items-center gap-2 mx-auto w-full select-none p-1 bg-gray-200">
         <div>
             Copyright ©	{new Date().getFullYear()} lfcyk
         </div>

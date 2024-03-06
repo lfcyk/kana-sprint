@@ -1,0 +1,39 @@
+.card {
+    box-shadow: 10px 10px rgb(74, 178, 247);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(8px);
+    box-shadow: 0px 0px rgb(74, 178, 247);
+}
+
+.gh {
+    box-shadow: 2px 2px rgb(255, 166, 0);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.gh:hover {
+    transform: translateY(2px);
+    box-shadow: 0px 0px rgb(255, 166, 0);
+}
+
+.ig {
+    box-shadow: 2px 2px rgb(74, 178, 247);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ig:hover {
+    transform: translateY(2px);
+    box-shadow: 0px 0px rgb(0, 153, 255);
+}
+  
+.linkedin {
+    box-shadow: 2px 2px rgb(74, 247, 74);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.linkedin:hover {
+    transform: translateY(2px);
+    box-shadow: 0px 0px rgb(74, 247, 74);
+}  

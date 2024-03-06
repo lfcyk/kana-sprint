@@ -1,0 +1,16 @@
+.mainButton {
+    box-shadow: 5px 5px black;
+    padding-block: 0.5rem;
+    width: 8rem; 
+    line-height: 1.5rem; 
+    color: #ffffff; 
+    /* background-color: rgb(12, 202, 235); */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.mainButton:hover {
+    transform: translateY(2px);
+    box-shadow: 1px 1px black;
+
+}
+  

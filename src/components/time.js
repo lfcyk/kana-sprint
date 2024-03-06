@@ -2,8 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 
-export default function Time({isFinished}) {
-    const [elapsedTime, setElapsedTime]  = useState(0);
+export default function Time({isFinished, setElapsedTime, elapsedTime}) {
     const [startTime, setStartTime] = useState(Date.now());
     let timeHandler = useRef()
 
@@ -32,6 +31,7 @@ export default function Time({isFinished}) {
         clearInterval(timeHandler.current);
         const timer = document.querySelector('.timer');
         timer.classList.add('text-green-500');
+        // onGameComplete();
     }
         
     let hours = Math.floor(elapsedTime / (1000 * 60 * 60));
