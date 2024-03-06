@@ -27,8 +27,8 @@ function About() {
                     />
                     <div className='flex flex-col items-center grow justify-center'>
                         <div className=' text-3xl m-5'>*Shameless Plug*</div>
-                        <p className=' text-md mt-5 indent-4'>Hi there! I'm <span className='text-cyan-600 font-bold'>Willa</span>, a Software Engineer currently learning and building stuff in NextJS and Flutter. <span className='text-orange-600 font-bold'>～Kana</span> <span className='text-green-600 font-bold'>Sprint～</span> is the first full stack app that I actually finished (I get bored way too easily it's actually concerning lol). </p>
-                        <p className=' text-md mb-5 mt-2 indent-4'>I hope <span className='text-orange-600 font-bold'>～Kana</span> <span className='text-green-600 font-bold'>Sprint～</span> helps you memorize Hiragana and Katakana characters, making your Japanese learning journey a bit easier. Enjoy!</p>
+                        <p className=' text-md mt-5 indent-4 mr-10'>Hi there! I'm <span className='text-cyan-600 font-bold'>Willa</span>, a Software Engineer currently learning and building stuff in NextJS and Flutter. <span className='text-orange-600 font-bold'>～Kana</span> <span className='text-green-600 font-bold'>Sprint～</span> is the first full stack app that I actually finished (I get bored way too easily it's actually concerning lol). </p>
+                        <p className=' text-md mb-5 mt-2 indent-4 mr-10'>I hope <span className='text-orange-600 font-bold'>～Kana</span> <span className='text-green-600 font-bold'>Sprint～</span> helps you memorize Hiragana and Katakana characters, making your Japanese learning journey a bit easier. Enjoy!</p>
                         <div className='flex flex-col items-center gap-3'>
                             <div>find me at:</div>
                             <div className='flex flex-row gap-3 text-3xl'>
