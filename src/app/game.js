@@ -93,7 +93,7 @@ export default function Game({characters}) {
 				countCorrect+=1;
 			}
 		})
-		if(countCorrect == 46) {
+		if(countCorrect == 3) {
 			setIsFinished(true);
 			
 		}
