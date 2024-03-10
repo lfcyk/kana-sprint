@@ -14,5 +14,7 @@ export async function GET(req, { params }) {
         return new Response(error);
     }
 
+    hiraganaLeaderboard.sort(function(a, b){return a.time - b.time});
+    katakanaLeaderboard.sort(function(a, b){return a.time - b.time});
     return new Response(JSON.stringify({hiraganaLeaderboard, katakanaLeaderboard}, null, 2), {status: 200})
 }

@@ -45,6 +45,7 @@ export default function Game({characters}) {
 	const [country, setCountry] = useState('');
 	const [elapsedTime, setElapsedTime] = useState(0);
 	const [playerName, setPlayerName] = useState("");
+	const [submitButtonActive, setSubmitButtonActive] = useState(false);
 
 	let enteredAnswer = {};
 	letConRomaji.forEach((romaji) => {
@@ -179,6 +180,8 @@ export default function Game({characters}) {
 	});
 
 	const onSubmitScore = async (e) => {
+		setSubmitButtonActive(true);
+
 		const body = {country, playerName, elapsedTime, characters};
 		await fetch('/api/postLeaderboard', {
             method: 'POST',
@@ -193,6 +196,8 @@ export default function Game({characters}) {
                 isOk: response.ok,
             }
         })
+		setTimeout(() => setSubmitButtonActive(false), 2000);
+
 		router.push('/leaderboard');
 	}
 
@@ -237,8 +242,9 @@ export default function Game({characters}) {
 							}}/>
 						<div className="flex flex-row gap-2 mt-4 justify-center">
 							<button 
-								className={`bg-green-400 w-full py-2 text-white font-bold ${styles.modalButton}`} 
-								>Submit Score</button>
+								disabled={submitButtonActive}
+								className={`bg-green-400 w-full py-2 text-white font-bold ${styles.modalButton} ${submitButtonActive? styles.disabledButton : ''}`} 
+								>{submitButtonActive? 'Submitting...' :'Submit Score' }</button>
 						</div>
 					</form>
 				</div>

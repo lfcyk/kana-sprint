@@ -11,7 +11,7 @@ function Table({character, data, isLoading}) {
     const [pagination, setPagination] = useState(1);
     const pages = Math.ceil(data.length/10);
     const showData = data.slice((pagination-1)*10, (pagination)*10);
-    data.sort(function(a, b){return a.time - b.time});
+
     return (
         <div className='flex flex-col h-full select-none'>
             <div className={`max-w-fit mx-auto text-2xl font-bold ${character == 'hiragana' ? 'text-orange-300' : 'text-green-300'}`}>
