@@ -220,7 +220,6 @@ export default function Game({characters}) {
 					},
 				
 				}}
-
 				>
 				<div className="flex flex-col">
 					<div className="flex flex-row justify-between">
