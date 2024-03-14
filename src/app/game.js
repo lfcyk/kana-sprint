@@ -280,7 +280,8 @@ export default function Game({characters}) {
 					})
 				}
 			</div>
-			<div className="kana-sprint max-w-fit m-auto my-7 text-3xl font-bold select-none">{(characters == 'hiragana') ? 'Hiragana / ひらがな' : 'Katakana / カタカナ' }</div>
+			<div className="kana-sprint max-w-fit m-auto mt-7 text-3xl font-bold select-none">{(characters == 'hiragana') ? 'Hiragana / ひらがな' : 'Katakana / カタカナ' }</div>
+			<div className="max-w-fit m-auto mb-7 select-none">Drag the <span>{(characters == 'hiragana') ? 'hiragana' : 'katakana' }</span> card and drop it into the corresponding romaji cards.</div>
 			<div  className="grid grid-rows-5 grid-cols-10 gap-2  m-auto w-fit max-h-fit grid-auto-flow">
 				{
 					letConRomaji.map((letter, index) => {
