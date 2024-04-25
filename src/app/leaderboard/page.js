@@ -8,6 +8,7 @@ import Table from './table'
 import MainButton from '@/components/mainMenu/mainButton';
 
 import useSWR from 'swr';
+import { isMobile } from 'react-device-detect';
 const fetcher = url => fetch(url, {cache: 'no-store'}).then(r => r.json())
 // const Table = dynamic(() => import('./table'), { ssr: false });
 
@@ -19,8 +20,27 @@ function Leaderboard() {
 		hiraganaData = data.hiraganaLeaderboard;
 		katakanaData = data.katakanaLeaderboard;
 	}
-	return (
+
+	if(isMobile) {
+		return (
 		<div className='bg-white flex flex-col  h-screen'>
+			<NavBar/>
+			<div className='m-5 mt-20'>
+				<MainButton  text={'Leaderboard'} bgColor={'bg-cyan-500'}/>
+			</div>
+			<div className='flex flex-col justify-center mt-5 gap-10 grow pb-16'>
+				<Table character={'hiragana'} data={hiraganaData} isLoading={isLoading}/>
+				<Table character={'katakana'} data={katakanaData} isLoading={isLoading}/>
+			</div>
+			<Footer/>
+		</div>
+
+		)
+	}
+
+
+	return (
+		<div className='bg-white flex flex-col  h-screen relative'>
 			<NavBar/>
 			<div className='m-5'>
 				<MainButton  text={'Leaderboard'} bgColor={'bg-cyan-500'}/>
