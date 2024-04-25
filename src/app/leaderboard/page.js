@@ -23,7 +23,7 @@ function Leaderboard() {
 
 	if(isMobile) {
 		return (
-		<div className='bg-white flex flex-col  h-screen'>
+		<div className='bg-white flex flex-col  h-screen mx-5'>
 			<NavBar/>
 			<div className='m-5 mt-20'>
 				<MainButton  text={'Leaderboard'} bgColor={'bg-cyan-500'}/>
