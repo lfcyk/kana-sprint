@@ -6,6 +6,8 @@ import NavBar from '@/components/navbar/navbar'
 import Flag from 'react-world-flags'
 import Table from './table'
 import MainButton from '@/components/mainMenu/mainButton';
+import styles from './styles.module.css';
+
 
 import useSWR from 'swr';
 import { isMobile } from 'react-device-detect';
@@ -23,12 +25,10 @@ function Leaderboard() {
 
 	if(isMobile) {
 		return (
-		<div className='bg-white flex flex-col  h-screen mx-5'>
+		<div className='bg-white flex flex-col  h-screen'>
 			<NavBar/>
-			<div className='m-5 mt-20'>
-				<MainButton  text={'Leaderboard'} bgColor={'bg-cyan-500'}/>
-			</div>
-			<div className='flex flex-col justify-center mt-5 gap-10 grow pb-16'>
+			<div className={`mt-20 text-xl font-bold bg-cyan-500 shadow-[5px_5px_black] leading-9 text-white px-9 py-3 text-center max-w-[20rem] min-w-[10rem] mx-auto mb-10 ${styles.title}`}>Leaderboard</div>
+			<div className='flex flex-col justify-center mt-5 gap-10 grow pb-16 min-w-[250px]'>
 				<Table character={'hiragana'} data={hiraganaData} isLoading={isLoading}/>
 				<Table character={'katakana'} data={katakanaData} isLoading={isLoading}/>
 			</div>

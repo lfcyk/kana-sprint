@@ -18,7 +18,7 @@ function NavBar() {
 
 	if(isMobile) {
 		return (
-			<div className="flex flex-col fixed w-full z-20">
+			<div className="flex flex-col fixed w-full z-[2500]">
 				<div className="flex flex-row justify-between py-3 bg-white border-2">
 					<div className="ml-3">
 						<div className="kana-sprint max-w-fit m-auto text-sm font-bold select-none">Kana Sprint</div>

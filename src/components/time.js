@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from "react";
+import { isMobile } from "react-device-detect";
 
 export default function Time({isFinished, setElapsedTime, elapsedTime}) {
     const [startTime, setStartTime] = useState(Date.now());
@@ -43,19 +44,37 @@ export default function Time({isFinished, setElapsedTime, elapsedTime}) {
     minutes = String(minutes).padStart(2, '0');
     seconds = String(seconds).padStart(2, '0');
     milliseconds = String(milliseconds).padStart(3, '0');
-
+    
     
     return (
-        <div className={`timer mx-auto mt-14 text-8xl w-7/12 select-none`}>
-            <div className=" mx-auto text-8xl flex flex-row gap-2 justify-evenly">
-                <div className="w-32">{hours}</div>
-                <div>:</div>
-                <div className="w-32">{minutes}</div>
-                <div>:</div>
-                <div className=" w-32">{seconds}</div>
-                <div>:</div>
-                <div className="w-44">{milliseconds}</div>
-            </div>
-        </div>
+        <>
+            {
+                isMobile
+                ?
+                <div className={`timer mx-auto text-lg font-bold w-7/12 select-none`}>
+                    <div className=" mx-auto  flex flex-row gap-0 justify-evenly">
+                        <div className="">{hours}</div>
+                        <div>:</div>
+                        <div className="">{minutes}</div>
+                        <div>:</div>
+                        <div className="">{seconds}</div>
+                        <div>:</div>
+                        <div className="">{milliseconds}</div>
+                    </div>
+                </div>
+                :
+                <div className={`timer mx-auto mt-14 text-8xl w-7/12 select-none`}>
+                    <div className=" mx-auto text-8xl flex flex-row gap-2 justify-evenly">
+                        <div className="w-32">{hours}</div>
+                        <div>:</div>
+                        <div className="w-32">{minutes}</div>
+                        <div>:</div>
+                        <div className=" w-32">{seconds}</div>
+                        <div>:</div>
+                        <div className="w-44">{milliseconds}</div>
+                    </div>
+                </div>
+            }
+        </>
     )
 }

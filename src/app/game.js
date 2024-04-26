@@ -23,6 +23,7 @@ import Link from "next/link";
 import { msToTime } from "@/utils/msToTime";
 
 import { useRouter } from 'next/navigation'
+import { MobileView, isMobile } from "react-device-detect";
 
 const shuffledHiragana = hiraganaArray.sort((a, b) => 0.5 - Math.random());
 const shuffledKatakana = katakanaArray.sort((a, b) => 0.5 - Math.random());
@@ -250,50 +251,93 @@ export default function Game({characters}) {
 			</Modal>
 			
             <NavBar/>
-			<div className="flex flex-row flex-wrap w-72 mx-auto gap-1 absolute my-0">
+			{
+			isMobile
+			? <>
+				<div className="kana-sprint pt-[80px] font-bold select-none text-center">{(characters == 'hiragana') ? 'Hiragana / ひらがな' : 'Katakana / カタカナ' }</div>
+				<div className="m-auto mb-7 select-none px-3 text-center text-xs max-w-80">Drag the <span>{(characters == 'hiragana') ? 'hiragana' : 'katakana' }</span> card and drop it into the corresponding romaji cards.</div>
+			</>
+			:<>
+				<div className="flex flex-row flex-wrap w-72 mx-auto gap-1 absolute my-0">
 
-				{
-					slicedCharactersArray1.map((letter, index) =>{
-						return (
-							<div 
-							className="kana-card border-2 border-black size-16 align-middle flex items-center select-none bg-white"
-							key={index}
-							>
-								<DraggableLetter letter={letter} />
-							</div>
-						)
-					})
-				}
+					{
+						slicedCharactersArray1.map((letter, index) =>{
+							return (
+								<div 
+								className="kana-card border-2 border-black size-16 align-middle flex items-center select-none bg-white"
+								key={index}
+								>
+									<DraggableLetter letter={letter} />
+								</div>
+							)
+						})
+					}
+				</div>
+				<div className="flex flex-row flex-wrap w-72 mx-auto gap-1 absolute my-0 right-0 justify-end">
+					{
+						slicedCharactersArray2.map((letter, index) =>{
+							return (
+								<div 
+								className="kana-card border-2 border-black size-16 align-middle flex items-center select-none bg-white"
+								key={index}
+								>
+									<DraggableLetter letter={letter} />
+								</div>
+							)
+						})
+					}
+				</div>
+				<div className="kana-sprint max-w-fit m-auto mt-7 text-3xl font-bold select-none">{(characters == 'hiragana') ? 'Hiragana / ひらがな' : 'Katakana / カタカナ' }</div>
+				<div className="max-w-fit m-auto mb-7 select-none">Drag the <span>{(characters == 'hiragana') ? 'hiragana' : 'katakana' }</span> card and drop it into the corresponding romaji cards.</div>
+
+			</>
+			}
+			{
+				isMobile
+				?<div  className="grid grid-rows-5 grid-cols-10 gap-[2px] m-auto grid-auto-flow max-w-[390px] px-[5px]">
+					{
+						letConRomaji.map((letter, index) => {
+							return (
+								<div className="letCon" key={index}>
+									<LetterContainer letter={letter}/>
+								</div>
+							)
+						})
+					}
+				</div>
+				:
+				<div  className="grid grid-rows-5 grid-cols-10 gap-2  m-auto w-fit max-h-fit grid-auto-flow">
+					{
+						letConRomaji.map((letter, index) => {
+							return (
+								<div className="letCon" key={index}>
+									<LetterContainer letter={letter}/>
+								</div>
+							)
+						})
+					}
+				</div>
+			}
+			<div className="my-6">
+				<Time isFinished={isFinished} setElapsedTime={setElapsedTime} elapsedTime={elapsedTime}/>
 			</div>
-			<div className="flex flex-row flex-wrap w-72 mx-auto gap-1 absolute my-0 right-0 justify-end">
-				{
-					slicedCharactersArray2.map((letter, index) =>{
-						return (
-							<div 
-							className="kana-card border-2 border-black size-16 align-middle flex items-center select-none bg-white"
-							key={index}
-							>
-								<DraggableLetter letter={letter} />
-							</div>
-						)
-					})
-				}
-			</div>
-			<div className="kana-sprint max-w-fit m-auto mt-7 text-3xl font-bold select-none">{(characters == 'hiragana') ? 'Hiragana / ひらがな' : 'Katakana / カタカナ' }</div>
-			<div className="max-w-fit m-auto mb-7 select-none">Drag the <span>{(characters == 'hiragana') ? 'hiragana' : 'katakana' }</span> card and drop it into the corresponding romaji cards.</div>
-			<div  className="grid grid-rows-5 grid-cols-10 gap-2  m-auto w-fit max-h-fit grid-auto-flow">
-				{
-					letConRomaji.map((letter, index) => {
-						return (
-							<div className="letCon" key={index}>
-								<LetterContainer letter={letter}/>
-							</div>
-						)
-					})
-				}
-			</div>
-			
-			<Time isFinished={isFinished} setElapsedTime={setElapsedTime} elapsedTime={elapsedTime}/>
+			<MobileView>
+				<div className="flex flex-row flex-wrap justify-center max-w-[390px] mx-auto">
+
+					{
+						slicedCharactersArray1.concat(slicedCharactersArray2).map((letter, index) =>{
+							return (
+								<div 
+								className="kana-card border border-black size-8 align-middle flex items-center select-none bg-white mr-1"
+								key={index}
+								>
+									<DraggableLetter letter={letter} />
+								</div>
+							)
+						})
+					}
+				</div>
+			</MobileView>
 			<Footer/>
 		</div>
 	);
