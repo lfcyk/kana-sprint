@@ -246,6 +246,7 @@ export default function Game({characters}) {
 								disabled={submitButtonActive}
 								onClick={() => {
 									setSubmitButtonActive(true);
+									onSubmitScore();
 								}}
 								className={` w-full py-2 text-white font-bold ${styles.modalButton} ${submitButtonActive? styles.disabledButton : '' } ${submitButtonActive? ' bg-gray-400' : 'bg-green-400'}`} 
 								>{submitButtonActive? 'Submitting...' :'Submit Score' }</button>
