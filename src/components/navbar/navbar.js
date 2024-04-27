@@ -6,6 +6,7 @@ import { isMobile } from "react-device-detect";
 import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 import NavbarButtonMobile from "./navbarButtonMobile";
+import Link from "next/link";
 
 
 
@@ -20,10 +21,12 @@ function NavBar() {
 		return (
 			<div className="flex flex-col fixed w-full z-[2500]">
 				<div className="flex flex-row justify-between py-3 bg-white border-2">
-					<div className="ml-3">
-						<div className="kana-sprint max-w-fit m-auto text-sm font-bold select-none">Kana Sprint</div>
-						<div className=" max-w-fit m-auto text-xs select-none font-bold">～<span className="text-red-500">かな</span>スプリント～</div>
-					</div>
+					<Link href={'/'}>
+						<div className="ml-3">
+							<div className="kana-sprint max-w-fit m-auto text-sm font-bold select-none">Kana Sprint</div>
+							<div className=" max-w-fit m-auto text-xs select-none font-bold">～<span className="text-red-500">かな</span>スプリント～</div>
+						</div>
+					</Link>
 					<div className="text-4xl mr-3">
 						<FaBars onClick={onTap}/>
 					</div>
@@ -49,10 +52,10 @@ function NavBar() {
 
 	return (
 		<div className="flex flex-row gap-5 mt-2 mx-5 justify-between">
-			<div className="">
+			<Link href={'/'}>
 				<div className="kana-sprint max-w-fit m-auto text-lg font-bold select-none">Kana Sprint</div>
 				<div className=" max-w-fit m-auto text-md select-none font-bold">～<span className="text-red-500">かな</span>スプリント～</div>
-			</div>
+			</Link>
 			<div className="flex flex-row gap-5">
 				{
 					buttonData.map((button, index) => {

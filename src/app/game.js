@@ -9,13 +9,13 @@ import dynamic from 'next/dynamic'
 import { useEffect, useState } from "react";
  
 const DraggableLetter = dynamic(() => import("@/components/draggable_letter"), { ssr: false })
+const NavBar = dynamic(() => import("@/components/navbar/navbar"), { ssr: false })
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
 
 import Footer from "@/components/footer";
-import NavBar from "@/components/navbar/navbar";
 
 import Modal from 'react-modal';
 import styles from './styles.module.css';
@@ -95,6 +95,7 @@ export default function Game({characters}) {
 				countCorrect+=1;
 			}
 		})
+		// if(countCorrect == 46)
 		if(countCorrect == 46) {
 			setIsFinished(true);
 			
@@ -213,20 +214,20 @@ export default function Game({characters}) {
 					},
 					content: {
 						boxShadow: '5px 5px black',
-						width: '23rem',
-						height: '16rem',
+						minWidth: '15rem',
+						maxWidth: '23rem',
 						alignSelf: 'center',
 						margin: 'auto',
-						
+						padding: '0px',
 					},
 				
 				}}
 				>
-				<div className="flex flex-col">
-					<div className="flex flex-row justify-between">
-						<h1 className="font-bold mb-3">Congratulations!</h1>
+				<div className="flex flex-col px-5 pb-3 pt-1">
+					<div className="flex flex-row justify-between items-start h-14">
+						<h1 className="font-bold mb-3 self-end">Congratulations!</h1>
 						<Link href="/">
-							<button className=" self-start -mt-3 -mr-2 @apply shadow-[2px_2px_black] w-32  text-white transition-transform duration-[0.2s,box-shadow] delay-[0.2s] hover:shadow-[1px_1px_black] bg-fuchsia-600">main menu</button>
+							<button className="text-xs -mr-2 @apply shadow-[2px_2px_black] px-2 text-white transition-transform duration-[0.2s,box-shadow] delay-[0.2s] hover:shadow-[1px_1px_black] bg-red-600">x</button>
 						</Link>
 					</div>
 					<div className="mb-4">You have completed the {characters} puzzle!</div>
@@ -243,13 +244,12 @@ export default function Game({characters}) {
 						<div className="flex flex-row gap-2 mt-4 justify-center">
 							<button 
 								disabled={submitButtonActive}
-								className={`bg-green-400 w-full py-2 text-white font-bold ${styles.modalButton} ${submitButtonActive? styles.disabledButton : ''}`} 
+								className={` w-full py-2 text-white font-bold ${styles.modalButton} ${submitButtonActive? styles.disabledButton : '' } ${submitButtonActive? ' bg-gray-400' : 'bg-green-400'}`} 
 								>{submitButtonActive? 'Submitting...' :'Submit Score' }</button>
 						</div>
 					</form>
 				</div>
-			</Modal>
-			
+			</Modal>			
             <NavBar/>
 			{
 			isMobile
@@ -328,7 +328,7 @@ export default function Game({characters}) {
 						slicedCharactersArray1.concat(slicedCharactersArray2).map((letter, index) =>{
 							return (
 								<div 
-								className="kana-card border border-black size-8 align-middle flex items-center select-none bg-white mr-1"
+								className="kana-card border border-black size-8 align-middle flex items-center select-none bg-white m-1"
 								key={index}
 								>
 									<DraggableLetter letter={letter} />
